@@ -54,7 +54,7 @@ Follow
 python bnn_performance/experiments/train_experiments.py --model model_name --data dataset_name --inference inference_method_name --lrs lrs --trials num_trials --prior prior_name --temperature 1.0 --sampling_decay flat --batch_size 100 --width width_for_mnist --save_samples False --cycles 20 --burnin_batches 1000 (--other_args other_args)
 ```
 
-in current directory, where `()` denote optional.
+in current directory, where `()` denotes optional.
 
 ## Evaluating running time
 
@@ -66,11 +66,7 @@ Follow
 python bnn_time/experiments/train_experiments.py --model model_name --data dataset_name --inference inference_method_name --lrs lrs --trials num_trials --prior prior_name --temperature 1.0 --sampling_decay flat --batch_size 100 --width width_for_mnist --save_samples False --cycles 1 --burnin_batches 1000 (--other_args other_args)
 ```
 
-in current directory, where `()` denote optional.
-
-## Viewing obtained results
-
-Our results can be viewed in `plot_evaluations.ipynb` and `plot_experiments_results.ipynb` in directory `final_results`.
+in current directory, where `()` denotes optional.
 
 ## Acknowledgements
 
