@@ -132,6 +132,7 @@ def plot_samples(
             axs[1].plot(density2(x1), x1, label="True")
         axs[1].set_yticklabels([])
         axs[1].legend(loc="lower right", prop={"size": 15})
+        axs[1].set_ylim(ylim[0], ylim[1])
         fig.subplots_adjust(wspace=0.1)
         plt.savefig(file_name_custom, dpi=200, bbox_inches="tight")
     print("Plot saved")

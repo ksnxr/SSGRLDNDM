@@ -46,7 +46,7 @@ def run_exp(data_fn, name, defaults, other_args, tuning_name=None, custom=False)
         file_name_custom = None
     else:
         file_name = f"figs/{name}.png"
-        file_name_custom = f"figs/{name}_custom.png"
+        file_name_custom = f"figs/{name}custom.png"
 
     plot_samples(
         samples,
