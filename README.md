@@ -1,5 +1,3 @@
-Properly documented code will be made openly available later.
-
 # Sampling from funnel
 
 Plot the results of sampling from funnel with identity metric, RMSprop metric and Monge metric. Gradient is corrupted by noise.
