@@ -1,8 +1,18 @@
-# Funnel experiment
+Properly documented code will be made openly available later.
+
+# Sampling from funnel
+
+Plot the results of sampling from funnel with identity metric, RMSprop metric and Monge metric. Gradient is corrupted by noise.
 
 See directory **sgmcmc**.
 
-Packages that we used are listed in *environment.yml*.
+Python version is `3.10.11`. The main dependencies are:
+
+```
+scipy==1.10.1
+matplotlib==3.7.1
+numpy==1.24.3
+```
 
 Run 
 
@@ -10,15 +20,17 @@ Run
 python two_d.py
 ```
 
-in directory **sgmcmc**.
+in directory **sgmcmc**, and the resulting figures can be found in **sgmcmc/figs**.
 
 # Neural network experiment
 
-Our code is based on [bnn_priors](https://github.com/ratschlab/bnn_priors). Following their practice, we used [sacred](https://github.com/IDSIA/sacred) to record the experiments.
+Our code is based on [bnn_priors](https://github.com/ratschlab/bnn_priors). Following their practice, we used [sacred](https://github.com/IDSIA/sacred) to record the experiments. The code for ShampooSGLD is partly based on [here](https://github.com/google-research/google-research/tree/master/scalable_shampoo/pytorch). The code for computing the curvature is partly based on [here](https://github.com/kylematoba/lcnn/blob/main/estimate_curvature.py).
 
-Note that we carried out the neural network experiments on a compute cluster, and some of our scripts are related to the cluster. Here we provide the raw scripts for running experiments.
+*Note that our code may not work (correctly) for scenarios not considered in our paper, e.g. different datasets, different thinning intervals, etc.*
 
-Python version is `3.9.13`.
+Here we provide the raw scripts for running experiments.
+
+Concerning the environment used to run the experiments, Python version is `3.9.13`.
 
 Dependencies as recorded by sacred are
 
@@ -31,7 +43,7 @@ Dependencies as recorded by sacred are
 "torch==1.13.0+cu116"
 ```
 
-Note that `bnn_priors` refers to our customized version. Some options they provide may not work in our codebase, and we have some custom options.
+Here `bnn_priors` refers to our customized version. Some options they provide may not work in our codebase, and we have some custom options.
 
 Some options used in the below instructions are
 
@@ -54,7 +66,7 @@ Follow
 python bnn_performance/experiments/train_experiments.py --model model_name --data dataset_name --inference inference_method_name --lrs lrs --trials num_trials --prior prior_name --temperature 1.0 --sampling_decay flat --batch_size 100 --width width_for_mnist --save_samples False --cycles 20 --burnin_batches 1000 (--other_args other_args)
 ```
 
-in current directory, where `()` denotes optional.
+in current directory, where `()` denote optional.
 
 ## Evaluating running time
 
@@ -66,9 +78,10 @@ Follow
 python bnn_time/experiments/train_experiments.py --model model_name --data dataset_name --inference inference_method_name --lrs lrs --trials num_trials --prior prior_name --temperature 1.0 --sampling_decay flat --batch_size 100 --width width_for_mnist --save_samples False --cycles 1 --burnin_batches 1000 (--other_args other_args)
 ```
 
-in current directory, where `()` denotes optional.
+in current directory, where `()` denote optional.
 
-## Acknowledgements
+## Viewing obtained results
 
-* Code for Bayesian neural network is based on [bnn_priors](https://github.com/ratschlab/bnn_priors).
-* Code for calculation of curvature of neural network is based on [lcnn](https://github.com/kylematoba/lcnn).
+The scripts that can be used to reproduce the results as reported in the paper are `plot_evaluations.ipynb`, `plot_experiments_results.ipynb` and `compare_time.ipynb` in directory `final_results`.
+
+Note that the environment used to visualize the results is slightly different from the environment used to obtain the results.

@@ -1,3 +1,5 @@
+# https://github.com/google-research/google-research/blob/master/scalable_shampoo/pytorch/matrix_functions.py
+
 # coding=utf-8
 # Copyright 2022 The Google Research Authors.
 #

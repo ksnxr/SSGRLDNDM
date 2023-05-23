@@ -124,7 +124,6 @@ shampoo_sgld_defaults = dict(
 #     )
 
 # Run VanillaSGLD here
-
 run_exp(
     vanilla_sgld,
     "VanillaSGLD",
@@ -132,22 +131,6 @@ run_exp(
     dict(
         L=2000000,
         eta=0.001,
-    ),
-    custom="2",
-)
-
-# Tune hyper parameters for MongeSGLD
-
-# Run MongeSGLD here
-run_exp(
-    monge_sgld,
-    "MongeSGLD",
-    monge_sgld_defaults,
-    dict(
-        L=2000000,
-        eta=0.003,
-        alpha_2=0.1,
-        lambd=0.7,
     ),
     custom="2",
 )
@@ -179,6 +162,22 @@ run_exp(
         eta=0.0025,
         lambd=0.995,
         epsilon=0.0,
+    ),
+    custom="2",
+)
+
+# Tune hyper parameters for MongeSGLD
+
+# Run MongeSGLD here
+run_exp(
+    monge_sgld,
+    "MongeSGLD",
+    monge_sgld_defaults,
+    dict(
+        L=2000000,
+        eta=0.003,
+        alpha_2=0.1,
+        lambd=0.7,
     ),
     custom="2",
 )

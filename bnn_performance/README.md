@@ -1,6 +1,6 @@
-This is based on https://github.com/ratschlab/bnn_priors. 
+This is based on [bnn_priors](https://github.com/ratschlab/bnn_priors). For further information see README.md in the parent folder.
 
-The following are parts from the original README.md.
+The following are parts from [the original README.md](https://github.com/ratschlab/bnn_priors/blob/main/README.md).
 
 # Bayesian Neural Network Priors Revisited
 

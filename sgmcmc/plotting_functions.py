@@ -1,4 +1,3 @@
-# https://github.com/williwilliams3/NUTSmonge/blob/main/NUTS2/plotting_functions.py
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -22,10 +21,15 @@ def plot_samples(
     title="samples",
     # Madapt=1000,
     # delta=0.2,
-    xaxes=["x", "y"],
+    xaxes=[r"$\boldsymbol{\theta}_{1}$", r"$\boldsymbol{\theta}_{2}$"],
     custom=False,
     file_name_custom="figs/samples.png",
 ):
+    
+    plt.rcParams['text.usetex'] = True
+    # https://stackoverflow.com/a/14324826, in order to use \boldsymbol
+    plt.rcParams["text.latex.preamble"] = r'\usepackage{amsmath}'
+    
     f = lambda x: (M.logp(x), M.dlogp(x))
     if densities:
         density1, density2 = M.densities()
@@ -78,7 +82,7 @@ def plot_samples(
 
     elif custom == "1":
         plt.figure(figsize=(12, 6))
-        plt.rcParams.update({"font.size": 22})
+        plt.rcParams["font.size"] = 22
         # plt.subplots_adjust(wspace=0.35)
         ax1 = plt.subplot(1, 2, 1)
         # thresholds found by hand
@@ -108,13 +112,13 @@ def plot_samples(
         plt.savefig(file_name_custom, dpi=200, bbox_inches="tight")
 
     if custom == "2":
-        plt.rcParams.update({"font.size": 22})
+        plt.rcParams["font.size"] = 22
         fig, axs = plt.subplots(
             1, 2, figsize=(9, 6), gridspec_kw={"width_ratios": [2, 1]}
         )
         axs[0].contour(X, Y, Z, [-10.0, -7.5, -5.0, -2.5])
-        axs[0].set_xlabel(xaxes[0])
-        axs[0].set_ylabel(xaxes[1])
+        axs[0].set_xlabel(xaxes[0], fontsize=30)
+        axs[0].set_ylabel(xaxes[1], fontsize=30)
         axs[0].set_xlim(xlim[0], xlim[1])
         axs[0].set_ylim(ylim[0], ylim[1])
         axs[0].scatter(
@@ -136,32 +140,3 @@ def plot_samples(
         fig.subplots_adjust(wspace=0.1)
         plt.savefig(file_name_custom, dpi=200, bbox_inches="tight")
     print("Plot saved")
-
-
-def plot_control_stats(
-    control_stats,
-    save_fig=True,
-    file_name="figs/stats.png",
-    title="Control Stats",
-    Nadapt=1000,
-    delta=0.6,
-    ylim=[0, 10],
-):
-
-    _, N = control_stats.shape
-
-    plt.figure(figsize=(12, 6))
-    ax1 = plt.subplot(2, 1, 1)
-    ax1.plot(control_stats[0:Nadapt, 0], label="Step Size")
-    ax1.set_ylim(ylim[0], np.min([ylim[1], 1.1 * np.max(control_stats[0:Nadapt, 0])]))
-    ax1.legend()
-    ax2 = plt.subplot(2, 1, 2)
-    ax2.plot(control_stats[:, 1], label="Average H-delta", color="tab:orange")
-
-    ax2.legend()
-    if save_fig:
-        plt.savefig(file_name, dpi=200)
-        print("Plot saved")
-    else:
-        plt.show()
-    return

@@ -1,3 +1,5 @@
+For further information see README.md in the parent folder.
+
 # Usage
 
-Run `two_d.py`.
+Run `python two_d.py`.

@@ -22,7 +22,7 @@ def rmsprop_sgld(
     for i in range(L):
         noisy_grad = noisy_grad_fn(x)
 
-        grad_square = lambd * grad_square + (1 - lambd) * noisy_grad**2
+        grad_square = lambd * grad_square + (1 - lambd) * noisy_grad ** 2
         G = np.sqrt(grad_square) + epsilon
         G_sqrt = np.sqrt(G)
 
