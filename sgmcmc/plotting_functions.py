@@ -25,7 +25,6 @@ def plot_samples(
     custom=False,
     file_name_custom="figs/samples.png",
 ):
-    
     plt.rcParams['text.usetex'] = True
     # https://stackoverflow.com/a/14324826, in order to use \boldsymbol
     plt.rcParams["text.latex.preamble"] = r'\usepackage{amsmath}'

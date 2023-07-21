@@ -5,17 +5,17 @@ import os
 from mcmc.vanilla_sgld import vanilla_sgld
 from mcmc.monge_sgld import monge_sgld
 from mcmc.rmsprop_sgld import rmsprop_sgld
+from mcmc.shampoo_sgld import shampoo_sgld
 
 # Not using them
 # from utils import kl_divergence
-# from mcmc.shampoo_sgld import shampoo_sgld
 # from mcmc.vanilla_sghmc import vanilla_sghmc
 
 import models
 from plotting_functions import plot_samples
-import warnings
 
-warnings.filterwarnings("ignore")
+# import warnings
+# warnings.filterwarnings("ignore")
 
 seed = 1
 np.random.seed(seed)
@@ -28,9 +28,10 @@ def replace(dict1, dict2):
     return dict3
 
 
-M = models.funnel(sig2v=80)
+D = 2
+M = models.funnel(D=D, sig2v=80)
 L = 20000
-x0 = np.ones(2)
+x0 = np.ones(D)
 
 
 def run_exp(data_fn, name, defaults, other_args, tuning_name=None, custom=False):
@@ -111,17 +112,21 @@ shampoo_sgld_defaults = dict(
 # )
 
 # Tune hyper parameters for VanillaSGLD
-# for eta in [0.01, 0.0075, 0.005, 0.0025, 0.001]:
-#     run_exp(
-#         vanilla_sgld,
-#         f"VanillaSGLD_{eta}",
-#         vanilla_sgld_defaults,
-#         dict(
-#             L=2000000,
-#             eta=eta,
-#         ),
-#         tuning_name="VanillaSGLD",
-#     )
+# for eta in [0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005]:
+# for eta in [0.002, 0.0015, 0.00095, 0.0009, 0.00085, 0.0008]:
+#     try:
+#         run_exp(
+#             vanilla_sgld,
+#             f"VanillaSGLD_{eta}",
+#             vanilla_sgld_defaults,
+#             dict(
+#                 L=2000000,
+#                 eta=eta,
+#             ),
+#             tuning_name="VanillaSGLD",
+#         )
+#     except:
+#         pass
 
 # Run VanillaSGLD here
 run_exp(
@@ -136,21 +141,24 @@ run_exp(
 )
 
 # Tune hyper parameters for RMSpropSGLD
-# for eta in [0.05, 0.025, 0.01, 0.0075, 0.005, 0.0025, 0.001]:
-#     # for eta in [0.25, 0.1, 0.075, 0.05]:
+# for eta in [0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005]:
+# for eta in [0.0045, 0.004, 0.0035, 0.003, 0.002, 0.0015]:
 #     for lambd in [0.8, 0.9, 0.95, 0.99, 0.995, 0.999]:
-#         run_exp(
-#             rmsprop_sgld,
-#             f"RMSpropSGLD_{eta}_{lambd}",
-#             rmsprop_sgld_defaults,
-#             dict(
-#                 L=2000000,
-#                 eta=eta,
-#                 lambd=lambd,
-#                 epsilon=0.0,
-#             ),
-#             tuning_name="RMSpropSGLD",
-#         )
+#         try:
+#             run_exp(
+#                 rmsprop_sgld,
+#                 f"RMSpropSGLD_{eta}_{lambd}",
+#                 rmsprop_sgld_defaults,
+#                 dict(
+#                     L=2000000,
+#                     eta=eta,
+#                     lambd=lambd,
+#                     epsilon=0.0,
+#                 ),
+#                 tuning_name="RMSpropSGLD",
+#             )
+#         except:
+#             pass
 
 # Run RMSpropSGLD here
 run_exp(
@@ -167,6 +175,7 @@ run_exp(
 )
 
 # Tune hyper parameters for MongeSGLD
+# tuned by hand
 
 # Run MongeSGLD here
 run_exp(
@@ -182,15 +191,37 @@ run_exp(
     custom="2",
 )
 
-# Run ShampooSGLD here, HYPER PARAMS NOT TUNED
-# run_exp(
-#     shampoo_sgld,
-#     "ShampooSGLD",
-#     shampoo_sgld_defaults,
-#     dict(
-#         L=2000000,
-#         eta=0.005,
-#         lambd=0.995,
-#         epsilon=0.0,
-#     ),
-# )
+# Tune hyper parameters for ShampooSGLD
+# for eta in [0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005]:
+# for eta in [0.0045, 0.004, 0.0035, 0.003, 0.002, 0.0015]:
+#     for lambd in [0.9, 0.95, 0.99, 0.995, 0.999, 0.9995, 0.9999]:
+#         try:
+#             run_exp(
+#                 shampoo_sgld,
+#                 f"ShampooSGLD_{eta}_{lambd}",
+#                 rmsprop_sgld_defaults,
+#                 dict(
+#                     L=2000000,
+#                     eta=eta,
+#                     lambd=lambd,
+#                     epsilon=1e-6,
+#                 ),
+#                 tuning_name="ShampooSGLD",
+#             )
+#         except:
+#             pass
+
+# Run ShampooSGLD here
+run_exp(
+    shampoo_sgld,
+    "ShampooSGLD",
+    shampoo_sgld_defaults,
+    dict(
+        L=2000000,
+        eta=0.003,
+        lambd=0.9995,
+        epsilon=1e-6,
+        update_interval=1,
+    ),
+    custom="2",
+)

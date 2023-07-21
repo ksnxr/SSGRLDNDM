@@ -1,4 +1,4 @@
-For further information see README.md in the parent folder.
+Generate Figure 2. For further information see README.md in the parent folder.
 
 # Usage
 
