@@ -3,6 +3,7 @@ from scipy.integrate import solve_ivp
 
 
 def dot(x1, x2):
+    # Inspired by bnn_priors
     return np.sum(x1 * x2)
 
 
@@ -22,6 +23,7 @@ def get_monge_fun(dim, M, alpha_2):
 
 
 def geodesic_monge(M, x, v, alpha_2=1.0, t_span=(0.0, 1.0)):
+    # Geodesic equation with Monge metric
     fun = get_monge_fun(x.shape[0], M=M, alpha_2=alpha_2)
     return solve_ivp(
         fun=fun,

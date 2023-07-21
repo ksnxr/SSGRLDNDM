@@ -30,6 +30,7 @@ def get_contour_plots(
     # can be adjusted
     multiplier = 10.0
 
+    # get the contour
     new_xs = []
     for num_point in range(num_points):
         new_x = geodesic_monge(
@@ -40,6 +41,8 @@ def get_contour_plots(
         )["y"][:2, -1]
         new_xs.append(new_x)
     contour = np.stack(new_xs)
+
+    # get the individual geodesic lines
     for g_num_point in range(g_num_points):
         geodesics.append(
             geodesic_monge(

@@ -129,6 +129,6 @@ The scripts that can be used to view the results as reported in the paper are `p
 
 The environment used to view the results is slightly different from the environment used to obtain the results.
 
-## Note on inverse square root of Monge metric
+## Note on practical implementation of the inverse square root of Monge metric
 
 In the main paper and the experiments, the inverse square root of Monge metric contains 1 divided by the norm of the moving average of the gradients, which can possibly cause numerical issues. However, we did not observe noticable numerical issues with the cases considered in the paper. We note that, based on previous experiences, one option to make it more numerically stable is to set $f_{-\frac{1}{2}}(x) = -\frac{\alpha^{2}}{2}$ when $\Vert x \Vert^{2}$ is smaller than 1e-12.
