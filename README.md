@@ -48,7 +48,7 @@ in directory **sgmcmc**, and the resulting figures can be found in **sgmcmc/figs
 
 ## Note on code for neural network experiments
 
-The provided code may not work (correctly) for scenarios not considered in our paper, e.g. different datasets, different thinning intervals, etc.
+The provided code may not work (correctly) for scenarios not considered in our paper, e.g. different datasets, different thinning intervals, etc. In order to extend the code to other datasets, different from the original bnn_priors, you need to specify a validation set.
 
 ## Neural network experiments
 
