@@ -1,6 +1,6 @@
 # Code for the paper Scalable Stochastic Gradient Riemannian Langevin Dynamics in Non-Diagonal Metrics
 
-This repository contains code that can be used to reproduce the experiments as presented in the paper [Scalable Stochastic Gradient Riemannian Langevin Dynamics in Non-Diagonal Metrics](https://openreview.net/pdf?id=dXAuvo6CGI), published in Transcations on Machine Learning Research. The detailed descriptions for each part, along with notes on implementation, can be found in this README.md.
+This repository contains code that can be used to reproduce the experiments as presented in the paper [Scalable Stochastic Gradient Riemannian Langevin Dynamics in Non-Diagonal Metrics](https://openreview.net/pdf?id=dXAuvo6CGI), published in Transactions on Machine Learning Research. The detailed descriptions for each part, along with notes on implementation, can be found in this README.md.
 
 ## Geodesics induced by Monge
 
